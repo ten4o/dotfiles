@@ -1,0 +1,24 @@
+{
+	"python.jediEnabled": false,
+	"python.linting.enabled": false,
+	"python.linting.lintOnSave": false,
+	"python.linting.flake8Enabled": false,
+
+	"languageserver": {
+		"clangd": {
+			"command": "clangd",
+			"args": ["--background-index"],
+			"rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+			"filetypes": ["c", "cpp", "objc", "objcpp"]
+		},
+		"zls" : {
+			"command": "~/OpenSource/_zig/zls/zig-cache/bin/zls",
+			"filetypes": ["zig"]
+		}
+	},
+	"explorer.keyMappings" : {
+		"<esc>" : ":q<cr>"
+	},
+	"explorer.width" : 40
+
+}

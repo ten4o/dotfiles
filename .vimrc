@@ -14,6 +14,7 @@ ino {<CR> {<CR>}<ESC>O
 ino #in #include <><Left>
 ino #d #define<Space>
 
+set scrolloff=5
 " auto save file
 set autowrite
 " set UTF-8 encoding
@@ -33,7 +34,7 @@ set noexpandtab        " don't expand tabs to spaces
 " wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
 set textwidth=120
 " set vertical ruler
-set colorcolumn=80
+set colorcolumn=121
 highlight ColorColumn ctermbg=9 guibg=red
 " turn search highlighting on
 se hlsearch
@@ -59,8 +60,6 @@ set tags+=~/.vim/tags/gl
 set tags+=~/.vim/tags/sdl
 set tags+=~/.vim/tags/qt4
 
-" Install DoxygenToolkit from http://www.vim.org/scripts/script.php?script_id=987
-let g:DoxygenToolkit_authorName="John Doe <john@doe.com>"
 
 " Enhanced keyboard mappings
 "
@@ -71,21 +70,21 @@ imap <F2> <ESC>:w<CR>i
 " goto definition with F3
 map <F3> <C-]>
 " switch between header/source with F4
-map <F6> :vs %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+map <F4> :vs %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " recreate tags file with F5
 map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
-" create doxygen comment
-map <F4> :Dox<CR>
-" build using makeprg with <F7>
+" build using make with <F7>
 map <F7> :make<CR>
 " build using makeprg with <S-F7>
 map <S-F7> :make clean all<CR>
 " space = page down
 nmap <Space> <PageDown>
+" cc for command prompt
+nnoremap cc :
 
 " in diff mode we use the spell check keys for merging
 if &diff
-  ” diff settings
+  " diff settings
   map <M-Down> ]c
   map <M-Up> [c
   map <M-Left> do
@@ -101,5 +100,18 @@ else
 endif
 
 " ASM files
-autocmd FileType asm setlocal shiftwidth=8 tabstop=8 
+autocmd FileType asm setlocal shiftwidth=8 tabstop=8
+
+" text files
+autocmd FileType txt setlocal nowrap textwidth=0
+autocmd FileType text setlocal nowrap textwidth=0
+
+" Zig files
+autocmd FileType zig setlocal expandtab
+
+if has("gui_running")
+	  set guifont=Inconsolata\ Medium\ 16
+endif
+
+set nospell
 
