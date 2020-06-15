@@ -1,0 +1,22 @@
+alias ..='cd ..'
+alias ...='cd ../..'
+alias vim='nvim -p'
+alias vi='nvim -p'
+alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
+alias gs='git status'
+alias gd='git diff'
+alias gp='git pull --rebase --all --recurse-submodules'
+alias gb='git branch -va'
+alias gg='git gui'
+alias adog='git log --all --decorate --oneline --graph'
+
+
+## @param $1 - build type ; one of Debug, Release, etc.
+function build() {
+	CFG=${1:+-DCMAKE_BUILD_TYPE=$1}
+	echo $CFG;
+	mkpath -p build
+	pushd && cmake "$CFG" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .. && make && cp compile_commands.json ..;
+	popd
+}
