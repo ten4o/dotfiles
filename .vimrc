@@ -81,6 +81,8 @@ map <S-F7> :make clean all<CR>
 nmap <Space> <PageDown>
 " cc for command prompt
 nnoremap cc :
+" yank to clipboard
+map Y "+y
 
 " in diff mode we use the spell check keys for merging
 if &diff
