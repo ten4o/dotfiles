@@ -7,12 +7,15 @@
 ino " ""<left>
 ino ' ''<left>
 ino ( ()<left>
-ino ) ()<left>
 ino [ []<left>
 ino { {}<left>
 ino {<CR> {<CR>}<ESC>O
 ino #in #include <><Left>
 ino #d #define<Space>
+
+
+" Make commands work in cyrillic
+set langmap=явертъуиопасдфгхйклшщасдфгхйклзьцжбнмчЯВЕРТЪУИОПШЩАСДФГХЙКЛЗѝЦЖБНМЧ;qwertyuiopasdfghjkl[]asdfghjklzxcvbnm`QWERTYUIOP{}ASDFGHJKLZXCVBNM~
 
 set scrolloff=5
 " auto save file
@@ -83,6 +86,10 @@ nmap <Space> <PageDown>
 nnoremap cc :
 " yank to clipboard
 map Y "+y
+
+" use CTRL-S to toggle spell checker
+nnoremap <C-s> :set invspell<CR>
+inoremap <C-s> <ESC>:set invspell<CR>i
 
 " in diff mode we use the spell check keys for merging
 if &diff

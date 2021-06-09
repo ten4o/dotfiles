@@ -10,13 +10,20 @@ alias gp='git pull --rebase --all --recurse-submodules'
 alias gb='git branch -va'
 alias gg='git gui'
 alias adog='git log --all --decorate --oneline --graph'
+alias o='xdg-open'
+alias dps='docker container ps'
+alias dls='docker container ls'
+alias dils='docker image ls'
 
+function vgz () {
+    tar czvf "$1".tar.gz "$1/"
+}
 
 ## @param $1 - build type ; one of Debug, Release, etc.
 function build() {
 	CFG=${1:+-DCMAKE_BUILD_TYPE=$1}
 	echo $CFG;
-	mkpath -p build
-	pushd && cmake "$CFG" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .. && make && cp compile_commands.json ..;
+	mkdir -p build
+	pushd build && cmake "$CFG" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .. && make && cp compile_commands.json ..;
 	popd
 }
