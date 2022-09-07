@@ -91,23 +91,6 @@ map Y "+y
 nnoremap <C-s> :set invspell<CR>
 inoremap <C-s> <ESC>:set invspell<CR>i
 
-" in diff mode we use the spell check keys for merging
-if &diff
-  " diff settings
-  map <M-Down> ]c
-  map <M-Up> [c
-  map <M-Left> do
-  map <M-Right> dp
-  map <F9> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
-else
-  " spell settings
-  :setlocal spell spelllang=en
-  " set the spellfile - folders must exist
-  set spellfile=~/.vim/spellfile.add
-  map <M-Down> ]s
-  map <M-Up> [s
-endif
-
 " ASM files
 autocmd FileType asm setlocal shiftwidth=8 tabstop=8
 
