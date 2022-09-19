@@ -7,5 +7,7 @@ require "u.completion"
 require "u.telescope"
 require "u.treesitter"
 require "u.nvim-tree"
-require 'lualine'.setup()
+require "u.lsp"
+require "lualine".setup()
+-- require "u.terminal"
 
