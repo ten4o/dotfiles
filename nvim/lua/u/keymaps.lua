@@ -18,6 +18,7 @@ end
 vim.g.mapleader = ","
 
 keymap_n("<Space>", "<PageDown>")
+keymap_n("<C-q>", ":qall<CR>")
 
 -- Spell checking
 keymap_n("<C-s>", ":set invspell<CR>")

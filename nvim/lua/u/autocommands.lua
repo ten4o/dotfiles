@@ -1,36 +1,39 @@
-vim.cmd [[
-  augroup _general_settings
-    autocmd!
-    autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
-    autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
-    autocmd BufWinEnter * :set formatoptions-=cro
-    autocmd FileType qf set nobuflisted
-  augroup end
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		require('vim.highlight').on_yank({higroup = 'Visual', timeout = 100})
+	end
+})
 
-  augroup _git
-    autocmd!
-    autocmd FileType gitcommit setlocal wrap spell
-  augroup end
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "help", "lspinfo", "man", "qf", "startuptime" },
+	callback = function()
+                vim.keymap.set("n", "q",
+                    "<cmd>close<CR>",
+                    { noremap = true, silent = true, buffer = true }
+                )
+				vim.opt.buflisted = false
+            end
+})
 
-  augroup _markdown
-    autocmd!
-    autocmd FileType markdown setlocal wrap spell
-  augroup end
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "zig",
+	callback = function()
+		vim.opt.expandtab = true
+	end
+})
 
-  augroup _asm
-    autocmd!
-    autocmd FileType asm setlocal tabstop=8 shiftwidth=8
-  augroup end
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "asm",
+	callback = function()
+		vim.opt.tabstop = 8
+		vim.opt.shiftwidth = 8
+	end
+})
 
-  augroup _zig
-    autocmd!
-    autocmd FileType zig setlocal expandtab
-  augroup end
-
-  augroup _auto_resize
-    autocmd!
-    autocmd VimResized * tabdo wincmd = 
-  augroup end
-
-]]
-
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "gitcommit", "markdown" },
+	callback = function()
+		vim.opt.wrap = true
+		vim.opt.spell = true
+	end
+})
