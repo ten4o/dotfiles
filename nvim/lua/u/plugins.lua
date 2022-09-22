@@ -1,6 +1,6 @@
 -- Automatically install packer
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+if vim.fn.isdirectory(install_path) < 1 then
 	PACKER_BOOTSTRAP = vim.fn.system({
 		"git",
 		"clone",
@@ -22,6 +22,7 @@ end
 
 return packer.startup(function(use)
 	-- My plugins here
+	use({ "lewis6991/impatient.nvim" })
 	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "kyazdani42/nvim-web-devicons" }) -- Required by nvim-tree and lualine

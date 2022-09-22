@@ -1,3 +1,8 @@
+-- disable netrw
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+
+require "impatient"
 require "u.autocommands"
 require "u.options"
 require "u.keymaps"
