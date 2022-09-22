@@ -56,6 +56,13 @@ keymap_n("<C-l>", "<C-w>l")
 keymap_n("<S-l>", ":bnext<CR>")
 keymap_n("<S-h>", ":bprevious<CR>")
 
+-- Remove current buffer
+keymap_n("<leader>c", function()
+	local bufnr = vim.api.nvim_win_get_buf(0)
+	vim.cmd("bnext")
+	vim.cmd("bdelete " .. bufnr)
+end)
+
 -- Telescope
 keymap_n("<C-p>", ":Telescope find_files<CR>")
 keymap_n("<C-f>", ":Telescope grep_string<CR>")
