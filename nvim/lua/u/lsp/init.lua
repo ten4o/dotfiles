@@ -20,3 +20,4 @@ for _, sp in pairs(server_paths) do
 	end
 end
 
+require("u.lsp.null-ls")

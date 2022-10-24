@@ -44,8 +44,8 @@ keymap_n("<C-Up>", ":resize -2<CR>")
 keymap_n("<C-Down>", ":resize +2<CR>")
 keymap_n("<C-Left>", ":vertical resize -2<CR>")
 keymap_n("<C-Right>", ":vertical resize +2<CR>")
--- vim.keymap.set({'t'}, "<C-Up>", "<C-\\><C-n>:resize -2<CR>i", opts)
--- vim.keymap.set({'t'}, "<C-Down>", "<C-\\><C-n>:resize +2<CR>i", opts)
+vim.keymap.set({'t'}, "<C-Up>", "<C-\\><C-n>:resize -2<CR>i", opts)
+vim.keymap.set({'t'}, "<C-Down>", "<C-\\><C-n>:resize +2<CR>i", opts)
 
 -- Navigate Windows
 keymap_n("<C-j>", "<C-w>j")
@@ -87,5 +87,5 @@ function Lsp_keymaps(bufnr)
 	keymap_n("]d", vim.diagnostic.goto_next, opts)
 	keymap_n("<Leader>e", vim.diagnostic.open_float, opts)
 	keymap_n("<Leader>q", vim.diagnostic.setloclist, opts)
-	keymap_n("<Leader>f", vim.lsp.buf.formatting, opts)
+	keymap_n("<Leader>f", vim.lsp.buf.format, opts)
 end

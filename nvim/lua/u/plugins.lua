@@ -21,7 +21,7 @@ if not status_ok then
 end
 
 return packer.startup(function(use)
-	-- My plugins here
+	-- plugins here
 	use({ "lewis6991/impatient.nvim" })
 	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim" })
@@ -51,6 +51,7 @@ return packer.startup(function(use)
 	-- LSP
 	use({ "neovim/nvim-lspconfig"}) -- enable LSP
 	use({ "williamboman/mason.nvim" })
+	use({ "jose-elias-alvarez/null-ls.nvim" })
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim",
