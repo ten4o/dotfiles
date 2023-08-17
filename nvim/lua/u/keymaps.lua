@@ -72,6 +72,8 @@ keymap_n("<C-g>", ":Telescope live_grep<CR>")
 -- vim.keymap.set({'n','t'}, '<leader>t', function() LuaTerminalToggle() end)
 -- vim.keymap.set('t', '<Esc>', function() LuaTerminalToggle() end)
 
+keymap_n("<leader>x", "<cmd>!chmod +x %<CR>")
+
 -- Lsp
 function Lsp_keymaps(bufnr)
 	local opts = { noremap=true, silent=true, buffer=bufnr }
