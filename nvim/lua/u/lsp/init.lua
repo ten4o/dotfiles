@@ -4,8 +4,6 @@ local opts = {
 	end
 }
 
-local lspconfig = require("lspconfig")
-
 local server_paths = vim.api.nvim_get_runtime_file('lua/u/lsp/servers/*.lua', true)
 for _, sp in pairs(server_paths) do
 	local server_name = string.match(sp, '([^\\/]+)%.lua$')
@@ -16,7 +14,7 @@ for _, sp in pairs(server_paths) do
 		if server['config'] ~= nil then
 			for k,v in pairs(server.config) do loc_opts[k] = v end
 		end
-		lspconfig[server_name].setup(loc_opts)
+		vim.lsp.enable(server_name, loc_opts)
 	end
 end
 
