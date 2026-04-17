@@ -81,6 +81,9 @@ telescope.setup {
     -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
+	grep_string = {
+		find_command = { "rg", "-l", "-g", "!*_test.go", "-g", "!mock_*.go" },
+	},
   },
   extensions = {
     -- Your extension configuration goes here:

@@ -19,6 +19,16 @@ vim.g.mapleader = ","
 
 keymap_n("<Space>", "<PageDown>")
 keymap_n("<C-q>", ":qall<CR>")
+keymap_n("<leader>b", ":enew<CR>")
+
+-- Center search
+keymap_n("n", "nzz")
+keymap_n("N", "Nzz")
+keymap_n("*", "*zz")
+keymap_n("#", "#zz")
+keymap_n("<C-o>", "<C-o>zz")
+keymap_n("<C-i>", "<C-i>zz")
+
 
 -- Spell checking
 keymap_n("<C-s>", ":set invspell<CR>")
