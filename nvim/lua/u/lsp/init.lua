@@ -14,7 +14,8 @@ for _, sp in pairs(server_paths) do
 		if server['config'] ~= nil then
 			for k,v in pairs(server.config) do loc_opts[k] = v end
 		end
-		vim.lsp.enable(server_name, loc_opts)
+		vim.lsp.config(server_name, loc_opts)
+		vim.lsp.enable(server_name)
 	end
 end
 
