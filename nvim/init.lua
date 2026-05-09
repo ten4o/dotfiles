@@ -14,5 +14,5 @@ require "u.treesitter"
 require "u.nvim-tree"
 require "u.lsp"
 require "lualine".setup()
--- require "u.terminal"
+require "u.terminal"
 

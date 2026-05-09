@@ -1,4 +1,3 @@
--- Lua:
 -- For dark theme (neovim's default)
 vim.o.background = 'dark'
 -- For light theme
@@ -34,4 +33,5 @@ require('lualine').setup({
     },
 })
 
+vim.cmd.colorscheme('vscode')
 --vim.cmd [[ try colo default catch /^Vim\%((\a\+)\)\=:E185/ colorscheme default set background=dark endtry ]]

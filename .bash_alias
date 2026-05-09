@@ -30,3 +30,48 @@ function build() {
 	pushd build && cmake "$CFG" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .. && make && cp compile_commands.json ..;
 	popd
 }
+
+export ZIG_HOME=~/zig
+
+# Download and "install" zig
+function dwzig() {
+	pushd "$ZIG_HOME" > /dev/null
+	local url fname branch catalog
+
+	branch="${1:-list}"
+	catalog="$(curl -s 'https://ziglang.org/download/index.json')"
+
+	case "${branch}" in
+		list)
+			jq -r 'keys_unsorted | join("\n")' <<< "${catalog}"
+			;;
+		*)
+			url="$(jq -r --arg br "${branch}" '.[$br]."x86_64-linux".tarball // empty' <<< ${catalog})"
+			if [ -z "${url}" ]; then
+				echo "Branch ${branch} not found!"
+				return
+			fi
+			wget "$url"
+			fname="$(basename $url)"
+			tar xvf "${fname}"
+			ln -sfT "${fname//.tar.xz//}" "zig-current"
+			rm "${fname}"
+			;;
+	esac
+	popd > /dev/null
+}
+
+# Select zig version
+function zigsel() {
+	local zigver allzigs current
+	current="$(readlink $ZIG_HOME/zig-current)"
+	allzigs="$( for f in $(ls -1 "$ZIG_HOME" | grep -v current); do if [[ "$f" == "$current" ]]; then echo -n '*'; fi; echo $f; done)"
+	zigver="$(fzf <<<"$allzigs")"
+	[ -z "$zigver" ] && return
+	[ "$zigver" == "*${current}" ] && return
+	echo "|$zigver|"
+	pushd "$ZIG_HOME" > /dev/null
+	ln -sfT "${zigver//.tar.xz//}" "zig-current"
+	popd > /dev/null
+}
+
