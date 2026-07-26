@@ -58,11 +58,13 @@ return packer.startup(function(use)
 	  requires = { {"nvim-lua/plenary.nvim"} }
 	})
 
-	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter",
+	-- Treesitter (archived)
+	-- use({ "nvim-treesitter/nvim-treesitter",
 		-- run = ':TSUpdate' will fail the first time
-		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-	})
+		-- run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+	-- })
+	-- lightweight treesitter manager
+	use({ "romus204/tree-sitter-manager.nvim" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
