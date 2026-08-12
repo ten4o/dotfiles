@@ -44,6 +44,12 @@ cmp.setup {
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
+  auto_brackets = {}, -- configure any filetype to auto add brackets
+  preselect = cmp.PreselectMode.Item or cmp.PreselectMode.None,
+  completion = {
+    completeopt = "menu,menuone,noinsert" .. ("" or ",noselect"),
+  },
+
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
